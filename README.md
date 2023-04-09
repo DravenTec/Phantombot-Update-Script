@@ -6,21 +6,6 @@ This Bash script updates the Phantombot software.
 
 The bot script and the update script must be located in the home directory of the user, as recommended by Phantombot, e.g. `/home/botuser/`. The user 'botuser' must have sudo privileges to start and stop the bot. It's important that both the script and the bot are located directly in the home directory and sudo privileges are available.
 
-## Variables
-
-The following variables are used in the script:
-
-- `LATEST_RELEASE_PROJECT`: The name of the project and repository on Github from which to download the latest version of Phantombot release.
-- `SERVICE_NAME`: The name of the service for Phantombot.
-- `REQUIRED_COMMANDS`: A list of required commands (tools) that need to be installed on the system.
-
-## Functions
-
-The script includes the following functions:
-
-- `get_latest_release()`: This function uses the Github API to retrieve the latest version of Phantombot release.
-- `handle_error()`: This function displays an error message and exits the script.
-
 ## Update Script
 
 The script performs the following steps:
