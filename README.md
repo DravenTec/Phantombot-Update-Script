@@ -34,5 +34,5 @@ The script performs the following steps:
 7. Sets the correct permissions for the executable files.
 8. Creates a backup of the old bot with the current update date.
 
-## Note: This script is provided as-is and should be used with caution. 
-## Please make sure to backup your bot and data before running the update script.
+# Note: This script is provided as-is and should be used with caution. 
+# Please make sure to backup your bot and data before running the update script.
