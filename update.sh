@@ -1,14 +1,15 @@
 #!/bin/bash
+
 #
 # Author: DravenTec
-# Version: 1.0
+# Version: 1.1
 # Date: 2023-04-09
 # Description: This script updates the Phantombot software.
 #
-# The bot script and the update script must be located in the user's home directory. 
-# As per Phantombot's instructions, this could be, for example, /home/botuser/. 
-# The user 'botuser' must be authorized to start and stop the bot using sudo. 
-# It's important that both the script and the bot are located directly in the 
+# The bot script and the update script must be located in the user's home directory.
+# As per Phantombot's instructions, this could be, for example, /home/botuser/.
+# The user 'botuser' must be authorized to start and stop the bot using sudo.
+# It's important that both the script and the bot are located directly in the
 # home directory and that sudo rights are available.
 #
 
@@ -33,7 +34,7 @@ handle_error() {
    exit 1
 }
 
-# Start Update Script 
+# Start Update Script
 
 echo "PhantomBot Update Script"
 sleep 1
@@ -70,7 +71,7 @@ DOWNLOADLINK=https://github.com/$LATEST_RELEASE_PROJEKT/releases/download/v$RELE
 echo "Starting download from "$DOWNLOADLINK
 sleep 0.5
 if ! wget $DOWNLOADLINK -q --show-progress; then
-  handle_error "Error occurred during download. Stopping Update Script"
+  sudo systemctl start $SERVICE_NAME || handle_error "Error occurred during download. Stopping Update Script and starting Bot"
 fi
 
 ZIPFILE=PhantomBot-$RELEASE.zip
@@ -103,11 +104,11 @@ cp -Rv ~/phantombot-old/scripts/lang/custom/ ~/phantombot/scripts/lang/
 
 
 ### Optional Commands ###
-# echo ""
-# echo "Copying required files for Songrequest"
-# cp -v ~/phantombot-old/web/common/js/socketWrapper.js ~/phantombot/web/common/js/
-# cp -v ~/phantombot-old/web/common/js/wsConfig.js ~/phantombot/web/common/js/
-# cp -Rv ~/phantombot-old/web/obs/requests-chart/ ~/phantombot/web/obs/
+echo ""
+echo "Copying required files for Songrequest"
+cp -v ~/phantombot-old/web/common/js/socketWrapper.js ~/phantombot/web/common/js/
+cp -v ~/phantombot-old/web/common/js/wsConfig.js ~/phantombot/web/common/js/
+cp -Rv ~/phantombot-old/web/obs/requests-chart/ ~/phantombot/web/obs/
 ### Optional Commands End ###
 
 
