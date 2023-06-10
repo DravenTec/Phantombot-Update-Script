@@ -3,7 +3,7 @@
 #
 # Author: DravenTec
 # Version: 1.1
-# Date: 2023-04-09
+# Date: 2023-06-10
 # Description: This script updates the Phantombot software.
 #
 # The bot script and the update script must be located in the user's home directory.
@@ -16,7 +16,7 @@
 # Variables
 LATEST_RELEASE_PROJEKT="PhantomBot/PhantomBot"
 SERVICE_NAME="phantombot"
-REQUIRED_COMMANDS=("curl" "wget" "grep" "sed" "unzip" "chmod" "systemctl" "mkdir" "mv" "cp")
+REQUIRED_COMMANDS=("curl" "wget" "grep" "sed" "unzip" "chmod" "systemctl" "mkdir" "mv" "cp" "sudo")
 
 # Functions
 
@@ -138,7 +138,7 @@ sleep 0.5
 # Starting the bot and ending the update script
 echo ""
 echo "Trying to start Phantombot..."
-sudo systemctl start $SERVICE_NAME ||handle_error "Error while starting Phantombot"
+sudo systemctl start $SERVICE_NAME || handle_error "Error while starting Phantombot"
 echo "Phantombot was started successfully."
 echo ""
 echo "Update done..."
