@@ -103,12 +103,14 @@ cp -Rv ~/phantombot-old/scripts/custom/ ~/phantombot/scripts/
 cp -Rv ~/phantombot-old/scripts/lang/custom/ ~/phantombot/scripts/lang/
 
 
-### Optional Commands ###
+### Optional files ###
 echo ""
-echo "Copying required files for Songrequest"
-cp -v ~/phantombot-old/web/common/js/socketWrapper.js ~/phantombot/web/common/js/
-cp -v ~/phantombot-old/web/common/js/wsConfig.js ~/phantombot/web/common/js/
-cp -Rv ~/phantombot-old/web/obs/requests-chart/ ~/phantombot/web/obs/
+echo "Copying optional files..."
+
+# Example Copying 
+# cp -v ~/phantombot-old/web/common/js/socketWrapper.js ~/phantombot/web/common/js/
+# cp -v ~/phantombot-old/web/common/js/wsConfig.js ~/phantombot/web/common/js/
+# cp -Rv ~/phantombot-old/web/obs/requests-chart/ ~/phantombot/web/obs/
 ### Optional Commands End ###
 
 
