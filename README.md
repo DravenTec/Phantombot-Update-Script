@@ -1,3 +1,7 @@
+![GitHub](https://img.shields.io/github/license/DravenTec/Phantombot-Update-Script)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/DravenTec/Phantombot-Update-Script)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/DravenTec/Phantombot-Update-Script)
+
 # Phantombot Update Script
 
 This Bash script updates the Phantombot software.
