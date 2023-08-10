@@ -1,9 +1,8 @@
 #!/bin/bash
-
 #
 # Author: DravenTec
-# Version: 1.1
-# Date: 2023-06-10
+# Version: 1.2
+# Date: 2023-08-10
 # Description: This script updates the Phantombot software.
 #
 # The bot script and the update script must be located in the user's home directory.
@@ -16,7 +15,7 @@
 # Variables
 LATEST_RELEASE_PROJEKT="PhantomBot/PhantomBot"
 SERVICE_NAME="phantombot"
-REQUIRED_COMMANDS=("curl" "wget" "grep" "sed" "unzip" "chmod" "systemctl" "mkdir" "mv" "cp" "sudo")
+REQUIRED_COMMANDS=("curl" "wget" "grep" "sed" "unzip" "chmod" "systemctl" "mkdir" "mv" "cp" "sudo" "pv" "gzip")
 
 # Functions
 
@@ -103,14 +102,14 @@ cp -Rv ~/phantombot-old/scripts/custom/ ~/phantombot/scripts/
 cp -Rv ~/phantombot-old/scripts/lang/custom/ ~/phantombot/scripts/lang/
 
 
-### Optional files ###
-echo ""
-echo "Copying optional files..."
-
-# Example Copying 
-# cp -v ~/phantombot-old/web/common/js/socketWrapper.js ~/phantombot/web/common/js/
-# cp -v ~/phantombot-old/web/common/js/wsConfig.js ~/phantombot/web/common/js/
-# cp -Rv ~/phantombot-old/web/obs/requests-chart/ ~/phantombot/web/obs/
+### Optional Commands ###
+# Example for optional commands
+###
+#echo ""
+#echo "Copying required files for Songrequest"
+#cp -v ~/phantombot-old/web/common/js/socketWrapper.js ~/phantombot/web/common/js/
+#cp -v ~/phantombot-old/web/common/js/wsConfig.js ~/phantombot/web/common/js/
+#cp -Rv ~/phantombot-old/web/obs/requests-chart/ ~/phantombot/web/obs/
 ### Optional Commands End ###
 
 
@@ -128,7 +127,11 @@ cd ~
 echo ""
 echo "Creating Backup folder and moving phantombot-old to backup/phantombot-"$(date +"%d-%m-%Y_%Hh%Mm%Ss")
 [ ! -d "$HOME/backup" ] && mkdir -p "$HOME/backup"
-mv ~/phantombot-old ~/backup/phantombot-$(date +"%d-%m-%Y_%Hh%Mm%Ss")
+cd ~/phantombot-old
+tar cf - . | pv -s $(du -sb ~/phantombot-old | awk '{print $1}') | gzip > ~/backup/phantombot-$(date +"%d-%m-%Y_%Hh%Mm%Ss").tar.gz
+cd ~
+rm -R ~/phantombot-old
+#mv ~/phantombot-old ~/backup/phantombot-$(date +"%d-%m-%Y_%Hh%Mm%Ss")
 sleep 0.5
 
 # Deleting the downloaded update file
@@ -140,7 +143,7 @@ sleep 0.5
 # Starting the bot and ending the update script
 echo ""
 echo "Trying to start Phantombot..."
-sudo systemctl start $SERVICE_NAME || handle_error "Error while starting Phantombot"
+sudo systemctl start $SERVICE_NAME ||handle_error "Error while starting Phantombot"
 echo "Phantombot was started successfully."
 echo ""
 echo "Update done..."
