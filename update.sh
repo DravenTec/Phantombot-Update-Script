@@ -1,21 +1,22 @@
 #!/bin/bash
+
 #
 # Author: DravenTec
-# Version: 1.2
-# Date: 2023-08-10
+# Version: 1.3
+# Date: 2023-08-31
 # Description: This script updates the Phantombot software.
 #
-# The bot script and the update script must be located in the user's home directory.
-# As per Phantombot's instructions, this could be, for example, /home/botuser/.
-# The user 'botuser' must be authorized to start and stop the bot using sudo.
-# It's important that both the script and the bot are located directly in the
+# The bot script and the update script must be located in the user's home directory. 
+# As per Phantombot's instructions, this could be, for example, /home/botuser/. 
+# The user 'botuser' must be authorized to start and stop the bot using sudo. 
+# It's important that both the script and the bot are located directly in the 
 # home directory and that sudo rights are available.
 #
 
 # Variables
 LATEST_RELEASE_PROJEKT="PhantomBot/PhantomBot"
 SERVICE_NAME="phantombot"
-REQUIRED_COMMANDS=("curl" "wget" "grep" "sed" "unzip" "chmod" "systemctl" "mkdir" "mv" "cp" "sudo" "pv" "gzip")
+REQUIRED_COMMANDS=("curl" "wget" "grep" "sed" "unzip" "chmod" "systemctl" "mkdir" "mv" "cp" "sudo" "pv")
 
 # Functions
 
@@ -33,7 +34,7 @@ handle_error() {
    exit 1
 }
 
-# Start Update Script
+# Start Update Script 
 
 echo "PhantomBot Update Script"
 sleep 1
@@ -66,14 +67,14 @@ else
 fi
 
 # Download der neuen Bot Version
-DOWNLOADLINK=https://github.com/$LATEST_RELEASE_PROJEKT/releases/download/v$RELEASE/PhantomBot-$RELEASE.zip
+DOWNLOADLINK=https://github.com/$LATEST_RELEASE_PROJEKT/releases/download/v$RELEASE/PhantomBot-$RELEASE-full.zip
 echo "Starting download from "$DOWNLOADLINK
 sleep 0.5
 if ! wget $DOWNLOADLINK -q --show-progress; then
   sudo systemctl start $SERVICE_NAME || handle_error "Error occurred during download. Stopping Update Script and starting Bot"
 fi
 
-ZIPFILE=PhantomBot-$RELEASE.zip
+ZIPFILE=PhantomBot-$RELEASE-full.zip
 FOLDER=PhantomBot-$RELEASE
 echo ""
 echo "Download finished: "$ZIPFILE
@@ -103,8 +104,6 @@ cp -Rv ~/phantombot-old/scripts/lang/custom/ ~/phantombot/scripts/lang/
 
 
 ### Optional Commands ###
-# Example for optional commands
-###
 #echo ""
 #echo "Copying required files for Songrequest"
 #cp -v ~/phantombot-old/web/common/js/socketWrapper.js ~/phantombot/web/common/js/
@@ -143,8 +142,11 @@ sleep 0.5
 # Starting the bot and ending the update script
 echo ""
 echo "Trying to start Phantombot..."
-sudo systemctl start $SERVICE_NAME ||handle_error "Error while starting Phantombot"
-echo "Phantombot was started successfully."
+if sudo systemctl start $SERVICE_NAME; then
+  echo "Phantombot was started successfully."
+else
+  handle_error "Error while starting Phantombot"
+fi
 echo ""
 echo "Update done..."
 sleep 0.5
