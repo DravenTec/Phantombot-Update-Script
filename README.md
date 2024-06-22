@@ -18,10 +18,11 @@ The script performs the following steps:
 2. Checks if the Phantombot service is active and attempts to stop it.
 3. Checks for arguments passed when running the script and determines the version to be updated.
 4. Downloads the latest version of Phantombot release from Github.
-5. Extracts the downloaded ZIP archive and copies the files to the appropriate locations.
-6. (Optionally) Copies required files for Scripts, if desired.
-7. Sets the correct permissions for the executable files.
-8. Creates a backup of the old bot with the current update date.
+5. Moves the installed phantombot folder from phantombot to phantombot-old
+6. Extracts the downloaded ZIP archive to phantombot and copies the needed files from phantombot-old.
+7. (Optionally) Copies required files for Scripts, if desired.
+8. Sets the correct permissions for the executable files.
+9. Creates a compressed backup of the old bot with the current date.
 
 **Note: This script is provided as-is and should be used with caution.**
 **Please make sure to backup your bot and data before running the update script.**
