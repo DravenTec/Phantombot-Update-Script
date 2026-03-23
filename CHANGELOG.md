@@ -5,6 +5,11 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [1.6.1] - 2026-03-23
+- Commented out optional song request file copies (`socketWrapper.js`,
+  `wsConfig.js`, `requests-chart/`) — user-specific files, kept as
+  reference examples in the script.
+
 ## [1.6] — 2026-03-23
 
 Full robustness and safety overhaul based on static code review.
