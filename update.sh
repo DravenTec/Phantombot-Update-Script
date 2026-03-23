@@ -2,9 +2,12 @@
 
 #
 # Author: DravenTec
-# Version: 1.6
+# Version: 1.6.1
 # Date: 2026-03-23
 # Description: PhantomBot Auto-Updater
+#
+# Changes in 1.6.1:
+#   - Commented out optional song request file copies (user-specific)
 #
 # Changes in 1.6:
 #   - [C-1] Renamed TMPDIR -> TMP_WORKDIR (avoids shadowing system env var)
@@ -222,10 +225,10 @@ copy_if_exists "$BOT_DIR/scripts/custom"                  "${BOT_DIR}-new/script
 copy_if_exists "$BOT_DIR/scripts/lang/custom"             "${BOT_DIR}-new/scripts/lang/" "scripts/lang/custom/"
 copy_if_exists "$BOT_DIR/logs"                            "${BOT_DIR}-new/"             "logs/"
 
-echo "🎵 Kopiere Songrequest-Dateien..."
-copy_if_exists "$BOT_DIR/web/common/js/socketWrapper.js"  "${BOT_DIR}-new/web/common/js/" "socketWrapper.js"
-copy_if_exists "$BOT_DIR/web/common/js/wsConfig.js"       "${BOT_DIR}-new/web/common/js/" "wsConfig.js"
-copy_if_exists "$BOT_DIR/web/obs/requests-chart"          "${BOT_DIR}-new/web/obs/"      "requests-chart/"
+#echo "🎵 Kopiere Songrequest-Dateien..."
+#copy_if_exists "$BOT_DIR/web/common/js/socketWrapper.js"  "${BOT_DIR}-new/web/common/js/" "socketWrapper.js"
+#copy_if_exists "$BOT_DIR/web/common/js/wsConfig.js"       "${BOT_DIR}-new/web/common/js/" "wsConfig.js"
+#copy_if_exists "$BOT_DIR/web/obs/requests-chart"          "${BOT_DIR}-new/web/obs/"      "requests-chart/"
 
 # --------------- Set permissions -------------------------
 echo "🔧 Setze Dateirechte..."
